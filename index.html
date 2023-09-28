@@ -8,6 +8,8 @@
     <meta content="طبخ, اكلات, حلويات مغربية, بسطيلة, دجاج, شهيوات, مناسبات" name="keywords">
     <meta content=" . مرحبًا بكم في موقعنا الخاص بالمأكولات! نحن نقدم تجربة لا مثيل لها من التذوق واستكشاف أشهى الأطعمة. يتميز موقعنا بتنوع الأطباق التي نقدمها، حيث يمكنكم الاستمتاع بمزيج لا يُقاوَم من النكهات والأصناف  " name="description">
    
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     <!-- Favicon -->
     <link href="img/logo.png" rel="icon">
 
@@ -110,7 +112,7 @@
             <div class="col-lg-6">
                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">معلومات عنا</h5>
                 <h1 class="mb-4">مرحبا بكم في موقعنا</h1>
-                <p class="mb-4"> نادية الناصري طباخة مغربية محترفة بخبرة تزيد عن 10 سنوات،  بمهارات استثنائية في تحضير الأكلات التقليدية و المعاصرة المغربية، بالإظافة الى الحلوات بأشكالها و انواعها المغربية منها و غيرها، تلبية أذواق الضيوف من مختلف أنحاء العالم بأطباقه اللذيذة هو شعارها  </p>
+                <p class="mb-4"> نادية الناصري طباخة مغربية محترفة بخبرة تزيد عن 15 سنوات،  بمهارات استثنائية في تحضير الأكلات التقليدية و المعاصرة المغربية، بالإظافة الى الحلوات بأشكالها و انواعها المغربية منها و غيرها، تلبية أذواق الضيوف من مختلف أنحاء العالم بأطباقه اللذيذة هو شعارها  </p>
                 <p class="mb-4"></p>
                 <div class="row g-4 mb-4">
                     <div class="col-sm-6">
@@ -556,14 +558,14 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="اسمك الكامل">
+                                        <input type="text" id="name" placeholder="اسمك الكامل">
                                         <label for="name">اسمك الكامل</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="بريدك الإكتروني">
+                                        <input type="email" id="email" placeholder="بريدك الإكتروني">
                                         <label for="email">بريدك الإكتروني</label>
                                     </div>
 
@@ -572,13 +574,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="اليوم و الوقت" data-target="#date3" data-toggle="datetimepicker" />
+                                        <input type="text" id="datetime" placeholder="اليوم و الوقت" data-target="#date3" data-toggle="datetimepicker" />
                                         <label for="datetime">اليوم و الوقت</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="الكمية ">
+                                        <input type="text" id="name" placeholder="الكمية ">
                                         <label for="name"> الكمية</label>
                                     </div>
                                 </div>
@@ -589,7 +591,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">تأكيد الطلبية</button>
+                                    <button type="submit">تأكيد الطلبية</button>
                                 </div>
                             </div>
                         </form>
@@ -760,6 +762,30 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        emailjs.init("info.nadiaennaciri@gmail.com"); // Replace with your Email.js user ID
+    
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            // Get user input
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+    
+            // Send email using Email.js
+            emailjs.send("service_1b3q3g8", "template_mnkqnpr", {
+                to_email: email,
+                from_name: name,
+                message_html: message
+            }).then(function (response) {
+                console.log("Email sent successfully", response);
+            }, function (error) {
+                console.error("Email could not be sent", error);
+            });
+        });
+    </script>
+    
 </body>
 
 </html>
